@@ -56,30 +56,6 @@ EOF
 # Удаление LibreOffice
 dnf remove -y libreoffice-*
 
-# Первичное обновление системы
-dnf update -y
-
-# костыль с chromium
-dnf -y reinstall chromium-browser
-
-
-mkdir /tmp/cpm
-
-
-# Установка AlterOffice
-#if [[ -d ./alteroffice ]] && [[ `ls -1U ./alteroffice | wc -l` -eq 45 ]]; then
-#	cd ./alteroffice
-#else
-#	cd /tmp/cpm
-#	wget --recursive \
-#		--no-verbose \
-#		--no-directories \
-#		--continue \
-#		--accept='rpm' \
-#		http://repo.alter-os.ru/alteroffice/x86_64/Packages
-#fi
-#dnf install -y ./*.rpm
-
 # Установка софта из репозиториев
 dnf install -y \
 	obs-studio \
@@ -91,8 +67,16 @@ dnf install -y \
 	arduino-ide \
 	git \
 	make
+	
+# костыль с chromium
+dnf -y reinstall chromium-browser
 
+# Первичное обновление системы
+dnf update -y
+
+mkdir /tmp/cpm
 cd /tmp/cpm
+
 # Установка драйверов под конкретную модель компа
 case $pruduct_name in
 	"HP ProBook 455 G1")
