@@ -118,8 +118,7 @@ cat > /lib/systemd/system/meshagent.service << "EOF"
     WantedBy=multi-user.target
 EOF
 
-systemctl enable meshagent
-systemctl start meshagent
+systemctl enable --now meshagent
 
 dnf -y autoremove
 dnf -y clean all
