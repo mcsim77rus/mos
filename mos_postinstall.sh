@@ -93,7 +93,8 @@ dnf install -y \
 	anydesk \
 	alteroffice; notify-send Done
 
-# комплект для робототехники и программирования
+# Комплект для робототехники и программирования
+# надо спрятать в диалог
 dnf install -y \
 	codeblocks \
 	arduino-ide \
@@ -103,7 +104,7 @@ dnf install -y \
 	fpc \
 	lazarus \
 	freebasic \
-	basic 256 \
+	basic256 \
 	wing-{personal,101}; notify-send Done
 
 # Первичное обновление системы
