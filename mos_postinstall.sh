@@ -24,17 +24,20 @@ pc_name=`hostname`
 
 # Переход во временныю папку
 mkdir $tmp_dir && cd $_
-#cd /tmp/cpm
 
 echo -e "Модель компьютера -\033[91m" $pruduct_name "\033[0m\n"
 
 # Переименовывание компа
 echo -ne "Имя компа [\033[91m"$pc_name"\033[0m] :"
 read new_pc_name
-if [[ $new_pc_name != '' ]]; then
+if [ -n "$new_pc_name" ]; then
     hostnamectl set-hostname $new_pc_name
     systemctl restart systemd-hostnamed
 fi
+
+echo -e "Этот компьютер для робототехники и программирования? [yes/No]:"
+read robots
+
 
 # Установка драйверов под конкретную модель компа
 echo -e "Определение спецдров"
@@ -90,8 +93,18 @@ dnf install -y \
 	obs-studio \
 	yandex-browser \
 	vk-messenger \
-	anydesk \
-	alteroffice; notify-send Done
+#	anydesk \
+	alteroffice
+
+wget https://мойассистент.рф/%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C/Download/946
+
+dnf install ./assistant*.rpm -y
+
+
+#if [ $robots == grep -i -E "(y|yes)" ]; then
+#
+#fi
+
 
 # Комплект для робототехники и программирования
 # надо спрятать в диалог
@@ -105,7 +118,7 @@ dnf install -y \
 	lazarus \
 	freebasic \
 	basic256 \
-	wing-{personal,101}; notify-send Done
+	wing-{personal,101}
 
 # Первичное обновление системы
 dnf update -y
@@ -138,9 +151,7 @@ EOF
 systemctl enable --now meshagent
 
 dnf -y autoremove
-#dnf -y clean all
-
-rm -R $tmp_dir
+cd /; rm -R $tmp_dir
 
 exit 0
 
