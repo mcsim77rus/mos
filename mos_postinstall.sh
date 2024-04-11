@@ -96,7 +96,7 @@ dnf install -y \
 #	anydesk \
 	alteroffice
 
-wget https://мойассистент.рф/%D1%81%D0%BA%D0%B0%D1%87%D0%B0%D1%82%D1%8C/Download/946
+wget https://github.com/mcsim77rus/mos/blob/0c0e475ea59085aece42e8330134ea1b2c5e848e/assistant-5.6-0.x86_64.rpm
 
 dnf install ./assistant*.rpm -y
 
